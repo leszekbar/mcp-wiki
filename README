@@ -1,0 +1,16 @@
+
+
+
+Packages required for server:
+
+pip install wikipedia
+pip install mcp
+pip install wikipedia_sections
+
+Packages required for client:
+
+pip install mcp 
+pip install langchain
+pip install langgraph
+pip install langchain-openai
+pip install langchain-mcp-adapters
