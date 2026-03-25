@@ -43,7 +43,7 @@ def list_wikipedia_sections(topic: str) -> dict:
         return {"sections": sections}
     except Exception as e:
         return {"error": str(e)}
-    
+
 @mcp.tool()
 def get_section_content(topic: str, section_title: str) -> dict:
     """
@@ -59,8 +59,6 @@ def get_section_content(topic: str, section_title: str) -> dict:
     except Exception as e:
         return {"error": str(e)}
 
-
-# Run the MCP server
 if __name__ == "__main__":
-    print("Starting MCP Wikipedia Server...")
+    print("Starting MCP Wikipedia Server with multiple tools...")
     mcp.run(transport="stdio")

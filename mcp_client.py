@@ -1,4 +1,4 @@
-import asyncio
+import asyncio, os
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
@@ -17,9 +17,11 @@ from langchain_mcp_adapters.tools import load_mcp_tools
 
 # MCP server launch config
 server_params = StdioServerParameters(
-    command="python",
+    command="python3",
     args=["mcp_server.py"]
 )
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # LangGraph state definition
 class State(TypedDict):
@@ -31,7 +33,7 @@ async def create_graph(session):
     tools = await load_mcp_tools(session)
 
     # LLM configuration (system prompt can be added later)
-    llm = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key="{{OPENAI_API_KEY}}")
+    llm = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key=OPENAI_API_KEY)
     llm_with_tools = llm.bind_tools(tools)
 
     # Prompt template with user/assistant chat only
